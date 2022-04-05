@@ -10,6 +10,8 @@ const { authenticateUser } = require('./middleware/auth-user');
 const router = express.Router();
 
 // user routes
+
+// get user
 router.get('/users', authenticateUser, asyncHandler(async (req, res) => {
   const user = req.currentUser
   res.json({
@@ -20,6 +22,7 @@ router.get('/users', authenticateUser, asyncHandler(async (req, res) => {
   res.status(200);
 }));
 
+// create new user
 router.post('/users', asyncHandler(async (req, res) => {
   try {
     await User.create(req.body);
@@ -36,6 +39,8 @@ router.post('/users', asyncHandler(async (req, res) => {
 }));
 
 // course routes
+
+// get all courses
 router.get('/courses', asyncHandler(async (req, res) => {
   const courses = await Course.findAll({
     attributes: {
@@ -49,6 +54,7 @@ router.get('/courses', asyncHandler(async (req, res) => {
   await res.status(200).json(courses);
 }));
 
+// get course details
 router.get('/courses/:id', asyncHandler(async (req, res) => {
   const course = await Course.findByPk(
     req.params.id, 
@@ -65,6 +71,7 @@ router.get('/courses/:id', asyncHandler(async (req, res) => {
   res.status(200).json(course);
 }));
 
+// create a course
 router.post('/courses', authenticateUser, asyncHandler(async (req, res) => {
   let course
   try {
@@ -81,6 +88,7 @@ router.post('/courses', authenticateUser, asyncHandler(async (req, res) => {
   }
 }));
 
+// update a course
 router.put('/courses/:id', authenticateUser, asyncHandler(async (req, res) => {
   const user = req.currentUser;
   let course;
@@ -106,6 +114,7 @@ router.put('/courses/:id', authenticateUser, asyncHandler(async (req, res) => {
   }
 }));
 
+// delete a course
 router.delete('/courses/:id', authenticateUser, asyncHandler(async (req, res) => {
   const user = req.currentUser;
   let course;

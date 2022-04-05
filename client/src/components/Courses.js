@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import URL from "../config";
 
-const Courses = () => {
+function Courses() {
   const [courses, setCourses] = useState([]);
 
   useEffect(() => {
-    axios(`http://localhost:5000/api/courses`)
+    axios(`${URL}/api/courses`)
       .then((res) => setCourses(res.data))
       .catch((err) => console.log(err))
   }, []);

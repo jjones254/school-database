@@ -73,6 +73,6 @@ module.exports = (sequelize) => {
       }
     });
   };
-  console.log(User.password);
+  
   return User;
 };
