@@ -18,6 +18,7 @@ router.get('/users', authenticateUser, asyncHandler(async (req, res) => {
     firstName: user.firstName,
     lastName: user.lastName,
     emailAddress: user.emailAddress,
+    id: user.id
   });
   res.status(200);
 }));
@@ -64,7 +65,7 @@ router.get('/courses/:id', asyncHandler(async (req, res) => {
       },
       include: {
         model: User,
-        attributes:['firstName', 'lastName', 'emailAddress']
+        attributes:['firstName', 'lastName', 'emailAddress',]
       } 
     }
   );
