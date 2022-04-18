@@ -15,7 +15,6 @@ export const Provider = (props) => {
 
     const signIn = async (emailAddress, password) => {
         const user = await axios.get(`${URL}/api/users`, { auth: { username: emailAddress, password: password } });
-        console.log(user, emailAddress, password);
         if (user !== null) {
             // user.password = password;
             setAuthenticatedUser(user);

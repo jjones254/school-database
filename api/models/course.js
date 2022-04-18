@@ -22,10 +22,10 @@ module.exports = (sequelize) => {
             allowNull: false,
             validate: {
                 notNull: {
-                    msg: 'A first name is required'
+                    msg: 'A description is required'
                 },
                 notEmpty: {
-                    msg: 'Please provide a first name'
+                    msg: 'Please provide a description'
                 }
             }
         },

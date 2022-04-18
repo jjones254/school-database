@@ -12,13 +12,12 @@ function UpdateCourse() {
     const [courseDescription, setCourseDescription] = useState();
     const [estimatedTime, setEstimatedTime] = useState();
     const [materialsNeeded, setMaterialsNeeded] = useState();
+    const [errors, setErrors] = useState();
     const navigate = useNavigate();
     const params = useParams();
     const firstName = authenticatedUser.data.firstName;
     const lastName = authenticatedUser.data.lastName;
-    const [errors, setErrors] = useState();
     
-
     useEffect(() => {
         const getCourseDetail = () => {
             axios.get(`${URL}/api/courses/${params.id}`)
@@ -35,7 +34,7 @@ function UpdateCourse() {
                 });
             };
             getCourseDetail();
-    }, [params.id, navigate, authenticatedUser, courseDetail]);
+    }, [params.id, navigate]);
 
     const handleChange = (e) => {
         if (e.target.name === "courseTitle") {
@@ -102,23 +101,23 @@ function UpdateCourse() {
                     <div>
                         <label>
                             Course Title
-                            <input id="courseTitle" name="courseTitle" type="text" defaultValue={ courseDetail && courseDetail.title } onChange={ handleChange }></input>
+                            <input id="courseTitle" name="courseTitle" type="text" defaultValue={ courseDetail && courseDetail.title } onInput={ handleChange }></input>
                         </label>
                         <p>By {(courseDetail && courseDetail.User.firstName) || firstName} {(courseDetail && courseDetail.User.lastName) || lastName}</p>
                         <label htmlFor="courseDescription">
                             Course Description
                         </label>
-                        <textarea id="courseDescription" name="courseDescription" defaultValue={ courseDetail && courseDetail.description } onChange={ handleChange }></textarea>
+                        <textarea id="courseDescription" name="courseDescription" defaultValue={ courseDetail && courseDetail.description } onInput={ handleChange }></textarea>
                     </div>
                     <div>
                         <label>
                             Estimated Time
-                            <input id="estimatedTime" name="estimatedTime" type="text" defaultValue={ courseDetail && courseDetail.estimatedTime } onChange={ handleChange }></input>
+                            <input id="estimatedTime" name="estimatedTime" type="text" defaultValue={ courseDetail && courseDetail.estimatedTime } onInput={ handleChange }></input>
                         </label>
                         <label htmlFor="materialsNeeded">
                             Materials Needed
                         </label>
-                        <textarea id="materialsNeeded" name="materialsNeeded" defaultValue={ courseDetail && courseDetail.materialsNeeded } onChange={ handleChange }></textarea>
+                        <textarea id="materialsNeeded" name="materialsNeeded" defaultValue={ courseDetail && courseDetail.materialsNeeded } onInput={ handleChange }></textarea>
                     </div>
                 </div>
                 <button className="button" type="submit">Update Course</button>

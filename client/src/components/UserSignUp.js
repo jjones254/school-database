@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { Context } from "../context"
 import axios from "axios";
 import URL from "../config";
 
@@ -7,9 +8,10 @@ import URL from "../config";
 function UserSignUp() {
     const [firstName, setFirstName] = useState();
     const [lastName, setLastName] = useState();
-    const [email, setEmail] = useState();
+    const [emailAddress, setEmail] = useState();
     const [password, setPassword] = useState();
     const [errors, setErrors] = useState();
+    const { actions } = useContext(Context);
     const navigate = useNavigate();
 
     const handleChange = (e) => {
@@ -28,14 +30,15 @@ function UserSignUp() {
         e.preventDefault();
         await axios
             .post(`${URL}/api/users`, {
-                emailAddress: email,
+                emailAddress: emailAddress,
                 password: password,
                 firstName: firstName,
                 lastName: lastName,
             })
             .then(() => {
                 alert("New Profile Created!");
-                navigate("/signin");
+                actions.signIn(emailAddress, password);
+                navigate('/');
             })
             .catch((error) => {
                 setErrors(error.response.data.errors);
