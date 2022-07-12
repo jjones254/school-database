@@ -43,7 +43,7 @@ app.use((req, res) => {
 app.use((err, req, res, next) => {
   if (enableGlobalErrorLogging) {
     console.error(`Global error handler: ${JSON.stringify(err.stack)}`);
-  }
+  };
 
   res.status(err.status || 500).json({
     message: err.message,
@@ -60,7 +60,7 @@ app.set('port', process.env.PORT || 5000);
     console.log('Connection has been established successfully.');
   } catch (error) {
     console.error('Unable to connect to the database:', error);
-  }
+  };
 })();
 
 sequelize.sync()

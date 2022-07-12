@@ -13,7 +13,7 @@ const router = express.Router();
 
 // get user
 router.get('/users', authenticateUser, asyncHandler(async (req, res) => {
-  const user = req.currentUser
+  const user = req.currentUser;
   res.json({
     firstName: user.firstName,
     lastName: user.lastName,
@@ -35,8 +35,8 @@ router.post('/users', asyncHandler(async (req, res) => {
       res.status(400).json({ errors });   
     } else {
       throw error;
-    }
-  }
+    };
+  };
 }));
 
 // course routes
@@ -74,7 +74,7 @@ router.get('/courses/:id', asyncHandler(async (req, res) => {
 
 // create a course
 router.post('/courses', authenticateUser, asyncHandler(async (req, res) => {
-  let course
+  let course;
   try {
     course = await Course.create(req.body);
     res.location(`/courses/${course.id}`);
@@ -85,8 +85,8 @@ router.post('/courses', authenticateUser, asyncHandler(async (req, res) => {
       res.status(400).json({ errors });
     } else {
       throw error;
-    }
-  }
+    };
+  };
 }));
 
 // update a course
@@ -101,18 +101,18 @@ router.put('/courses/:id', authenticateUser, asyncHandler(async (req, res) => {
         res.status(204).end();
       } else {
         res.status(403).json({ msg: "You don't own this course!" });
-      }
+      };
     } else {
       res.status(400).json({ msg: "Course not found!"});
-    }
+    };
   } catch (error) {
     if (error.name === 'SequelizeValidationError' || error.name === 'SequelizeUniqueConstraintError') {
       const errors = error.errors.map(err => err.message);
       res.status(400).json({ errors });
     } else {
       throw error;
-    }
-  }
+    };
+  };
 }));
 
 // delete a course
@@ -127,18 +127,18 @@ router.delete('/courses/:id', authenticateUser, asyncHandler(async (req, res) =>
         res.status(204).end();
       } else {
         res.status(403).json({ msg: "You don't own this course!" });
-      }
+      };
     } else {
       res.status(400).json({ msg: "Course not found!"});
-    }
+    };
   } catch (error) {
     if (error.name === 'SequelizeValidationError' || error.name === 'SequelizeUniqueConstraintError') {
       const errors = error.errors.map(err => err.message);
       res.status(400).json({ errors });
     } else {
       throw error;
-    }
-  }
+    };
+  };
 }));
 
 module.exports = router;

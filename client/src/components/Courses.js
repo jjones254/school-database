@@ -14,7 +14,7 @@ function Courses() {
       })
       .catch((error) => {
         console.log(error)
-      })
+      });
   }, []);
 
   return (

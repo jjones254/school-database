@@ -23,17 +23,17 @@ function UpdateCourse() {
             axios.get(`${URL}/api/courses/${params.id}`)
                 .then((res) => {
                     if (res.data) {
-                        setCourseDetail(res.data)
+                        setCourseDetail(res.data);
                     } else {
                         navigate('/notfound');
-                    }
+                    };
                 })
                 .catch((error) => {
                     navigate('/error');
                     console.log(error);
                 });
-            };
-            getCourseDetail();
+        };
+        getCourseDetail();
     }, [params.id, navigate]);
 
     const handleChange = (e) => {
@@ -45,7 +45,7 @@ function UpdateCourse() {
             setEstimatedTime(e.target.value);
         } else if (e.target.name === "materialsNeeded") {
             setMaterialsNeeded(e.target.value);
-        }
+        };
     };
 
     const handleSubmit = async (e) => {

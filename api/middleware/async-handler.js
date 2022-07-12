@@ -5,6 +5,6 @@ exports.asyncHandler = (cb) => {
         await cb(req, res, next);
       } catch (error) {
         next(error);
-      }
-    }
-}
+      };
+    };
+};

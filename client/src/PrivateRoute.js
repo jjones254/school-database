@@ -20,5 +20,5 @@ function PrivateRoute({ Component }) {
       )}
     </>
   );
-}
+};
 export default PrivateRoute;

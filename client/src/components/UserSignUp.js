@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Context } from "../context"
+import { Context } from "../context";
 import axios from "axios";
 import URL from "../config";
 
@@ -23,7 +23,7 @@ function UserSignUp() {
             setEmail(e.target.value);
         } else if (e.target.name === "password") {
             setPassword(e.target.value);
-        }
+        };
     };
 
     const handleSubmit = async (e) => {

@@ -25,7 +25,7 @@ function CreateCourse() {
             setEstimatedTime(e.target.value);
         } else if (e.target.name === "materialsNeeded") {
             setMaterialsNeeded(e.target.value);
-        }
+        };
     };
 
     const handleSubmit = async (e) => {

@@ -8,8 +8,8 @@ function Header() {
 
     let authUser = '';
     if (authenticatedUser) {
-        authUser = `${authenticatedUser.data.firstName} ${authenticatedUser.data.lastName}`
-    }
+        authUser = `${authenticatedUser.data.firstName} ${authenticatedUser.data.lastName}`;
+    };
 
     return (
         <header>
@@ -32,7 +32,7 @@ function Header() {
                 </nav>
             </div>
         </header>
-    )
-}
+    );
+};
 
 export default Header;

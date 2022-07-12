@@ -27,6 +27,6 @@ function UserSignOut() {
       </div>
     </>
   );
-}
+};
 
 export default UserSignOut;

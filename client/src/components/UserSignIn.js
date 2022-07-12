@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Context } from "../context"
+import { Context } from "../context";
 
 // display a user sign in form
 function UserSignIn() {
@@ -12,11 +12,11 @@ function UserSignIn() {
     const handleChange = (e) => {
         if (e.target.name === "emailAddress") {
             setEmailAddress(e.target.value);
-        }
+        };
     
         if (e.target.name === "password") {
             setPassword(e.target.value);
-        }
+        };
     };
 
     const handleSubmit = async (e) => {
@@ -45,6 +45,6 @@ function UserSignIn() {
             <p>Don't have a user account? Click here to <Link to='/signup'>sign up</Link>!</p>
         </div>
     );
-}
+};
 
 export default UserSignIn;

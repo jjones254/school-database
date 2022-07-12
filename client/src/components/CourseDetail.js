@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import ReactMarkdown from "react-markdown"
+import ReactMarkdown from "react-markdown";
 import axios from "axios";
 import URL from "../config";
-import { Context } from "../context"
+import { Context } from "../context";
 
 // fetch course details to display on page
 function CourseDetail() {

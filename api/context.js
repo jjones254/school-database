@@ -6,39 +6,39 @@ class Context {
   constructor(filename, enableLogging) {
     this.db = new sqlite3.Database(filename);
     this.enableLogging = enableLogging;
-  }
+  };
 
   static prepareQuery(text) {
     return text
       .replace(/\s+/g, ' ')
       .trim();
-  }
+  };
 
   static log(text, params) {
     console.info(`Running query: "${text}", with params: ${JSON.stringify(params)}`);
-  }
+  };
 
   execute(text, ...params) {
     const sql = Context.prepareQuery(text);
     if (this.enableLogging) {
       Context.log(sql, params);
-    }
+    };
     return new Promise((resolve, reject) => {
       this.db.run(sql, params, (err) => {
         if (err) {
           reject(err);
         } else {
           resolve();
-        }
+        };
       });
     });
-  }
+  };
 
   query(text, ...params) {
     const sql = Context.prepareQuery(text);
     if (this.enableLogging) {
       Context.log(sql, params);
-    }
+    };
     return new Promise((resolve, reject) => {
       this.db.all(sql, params, (err, data) => {
         if (err) {
@@ -48,11 +48,11 @@ class Context {
         }
       });
     });
-  }
+  };
 
   async retrieve(text, ...params) {
     return this.query(text, ...params);
-  }
+  };
 
   async retrieveSingle(text, ...params) {
     const data = await this.query(text, ...params);
@@ -62,10 +62,10 @@ class Context {
         [record] = data;
       } else if (data.length > 1) {
         throw new Error('Unexpected number of rows encountered.');
-      }
-    }
+      };
+    };
     return record;
-  }
+  };
 
   async retrieveValue(text, ...params) {
     const data = await this.query(text, ...params);
@@ -78,12 +78,12 @@ class Context {
         value = record[keys[0]];
       } else {
         throw new Error('Unexpected number of values encountered.');
-      }
+      };
     } else {
       throw new Error('Unexpected number of rows encountered.');
-    }
+    };
     return value;
-  }
-}
+  };
+};
 
 module.exports = Context;

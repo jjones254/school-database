@@ -21,21 +21,21 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Header />
-          <Routes>
-            <Route path='/' element={<Courses />} />
-            <Route path='/courses/:id' element={<CourseDetail />} />
-            <Route path="/signin" element={<UserSignIn />} />
-            <Route path="/signup" element={<UserSignUp />} />
-            <Route path="/signout" element={<UserSignOut />} />
-            <Route path="/courses/create" element={<PrivateRoute Component={CreateCourse} />} />
-            <Route path="/courses/:id/update" element={<PrivateRoute Component={UpdateCourse} />} />
-            <Route path='/notfound' element={<NotFound />} />
-            <Route path="/error" element={<Error />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes> 
+        <Routes>
+          <Route path='/' element={<Courses />} />
+          <Route path='/courses/:id' element={<CourseDetail />} />
+          <Route path="/signin" element={<UserSignIn />} />
+          <Route path="/signup" element={<UserSignUp />} />
+          <Route path="/signout" element={<UserSignOut />} />
+          <Route path="/courses/create" element={<PrivateRoute Component={CreateCourse} />} />
+          <Route path="/courses/:id/update" element={<PrivateRoute Component={UpdateCourse} />} />
+          <Route path='/notfound' element={<NotFound />} />
+          <Route path="/error" element={<Error />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes> 
       </div>
     </BrowserRouter>
   );
-}
+};
 
 export default App;

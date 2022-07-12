@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { Link } from "react-router-dom";
 
 function Error() {
@@ -9,7 +9,7 @@ function Error() {
             <p>Click here to return to the home page</p>
             <Link to='/' className='button'>Home</Link>
         </div>
-    )
-}
+    );
+};
 
 export default Error;

@@ -9,13 +9,13 @@ class Database {
     this.users = seedData.users;
     this.enableLogging = enableLogging;
     this.context = new Context('td-restapi.db', enableLogging);
-  }
+  };
 
   log(message) {
     if (this.enableLogging) {
       console.info(message);
-    }
-  }
+    };
+  };
 
   tableExists(tableName) {
     this.log(`Checking if the ${tableName} table exists...`);
@@ -28,7 +28,7 @@ class Database {
           WHERE type = 'table' AND name = ?
         );
       `, tableName);
-  }
+  };
 
   createUser(user) {
     return this.context
@@ -42,7 +42,7 @@ class Database {
       user.lastName,
       user.emailAddress,
       user.password);
-  }
+  };
 
   createCourse(course) {
     return this.context
@@ -57,7 +57,7 @@ class Database {
       course.description,
       course.estimatedTime,
       course.materialsNeeded);
-  }
+  };
 
   async hashUserPasswords(users) {
     const usersWithHashedPasswords = [];
@@ -65,22 +65,22 @@ class Database {
     for (const user of users) {
       const hashedPassword = await bcryptjs.hash(user.password, 10);
       usersWithHashedPasswords.push({ ...user, password: hashedPassword });
-    }
+    };
 
     return usersWithHashedPasswords;
-  }
+  };
 
   async createUsers(users) {
     for (const user of users) {
       await this.createUser(user);
-    }
-  }
+    };
+  };
 
   async createCourses(courses) {
     for (const course of courses) {
       await this.createCourse(course);
-    }
-  }
+    };
+  };
 
   async init() {
     const userTableExists = await this.tableExists('Users');
@@ -91,7 +91,7 @@ class Database {
       await this.context.execute(`
         DROP TABLE IF EXISTS Users;
       `);
-    }
+    };
 
     this.log('Creating the Users table...');
 
@@ -123,7 +123,7 @@ class Database {
       await this.context.execute(`
         DROP TABLE IF EXISTS Courses;
       `);
-    }
+    };
 
     this.log('Creating the Courses table...');
 
@@ -146,7 +146,7 @@ class Database {
     await this.createCourses(this.courses);
 
     this.log('Database successfully initialized!');
-  }
-}
+  };
+};
 
 module.exports = Database;
